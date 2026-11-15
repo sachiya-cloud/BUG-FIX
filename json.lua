@@ -1,11 +1,11 @@
 local _toJSON = toJSON
 function toJSON(str)
-	return encodeString(_toJSON(str))
+	return encodeString("base64", _toJSON(str))
 end
 
 local _fromJSON = fromJSON
 function fromJSON(str)
-	return _fromJSON(decodeString(str))
+	return _fromJSON(decodeString("base64", str))
 end
 
 function jsonGET(file, private)
