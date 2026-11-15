@@ -1,3 +1,12 @@
+--[[
+* ***********************************************************************************************************************
+* Copyright (c) 2015 OwlGaming Community - All Rights Reserved
+* All rights reserved. This program and the accompanying materials are private property belongs to OwlGaming Community
+* Unauthorized copying of this file, via any medium is strictly prohibited
+* Proprietary and confidential
+* ***********************************************************************************************************************
+]]
+
 -- dbList[defaultDB] settings
 local hostname = get("hostname") or "51.83.49.125"
 local port = tonumber(get("port")) or 3306
@@ -68,6 +77,25 @@ function query_insert_free(...)
 end
 
 function query_free(...) return dbExec(dbList[defaultDB], ...) end
+
+-- FIX: Added missing mysql_null function to prevent nil value errors
+function mysql_null(val)
+    if val == nil or val == "" or val == "N/A" then
+        return "NULL"
+    else
+        return "'" .. tostring(val) .. "'"
+    end
+end
+
+-- FIX: Added missing createMigrations / createMigrationsTable functions
+function createMigrationsTable()
+    -- Safe execution for table migrations if required by gamemode
+    dbExec(dbList[defaultDB], "CREATE TABLE IF NOT EXISTS `migrations` (`id` int(11) NOT NULL AUTO_INCREMENT, `name` varchar(255) NOT NULL, PRIMARY KEY (`id`)) ENGINE=InnoDB DEFAULT CHARSET=latin1;")
+end
+
+function createMigrations()
+    createMigrationsTable()
+end
 
 
 --Custom functions
