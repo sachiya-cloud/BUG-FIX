@@ -7,21 +7,21 @@
 * ***********************************************************************************************************************
 ]]
 -- Production Server
-production = (get( "production_server" ) == "1" or false)
-socket = get( "socket" ) or ""
+production = true
+socket = ""
 
--- connection settings
-hostname = get( "hostname" )
-username = get( "username" )
-password = get( "password" )
-database = get( "database" )
-port = tonumber( get( "port" ) )
+-- connection settings (Updated with your database details)
+hostname = "51.83.49.125"
+username = "u298386_tcAmS07SI2"
+password = "!gL1VjcuG9qqnzS77C=F^U1"
+database = "s298386_owl"
+port = 3306
 
-core_hostname = get( "core_hostname" )
-core_username = get( "core_username" )
-core_password = get( "core_password" )
-core_database = get( "core_database" )
-core_port = tonumber( get( "core_port" ) )
+core_hostname = "51.83.49.125"
+core_username = "u298386_tcAmS07SI2"
+core_password = "!gL1VjcuG9qqnzS77C=F^U1"
+core_database = "s298386_owl"
+core_port = 3306
 
 local dbConns = {}
 
